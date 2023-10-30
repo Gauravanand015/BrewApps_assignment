@@ -31,7 +31,7 @@ app.use(async (err, req, res, next) => {
   });
 });
 
-app.listen(process.env.PORT, async () => {
+app.listen(process.env.PORT, async (req, res, next) => {
   try {
     await connection;
     console.log("Connected to the Database!");
