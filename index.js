@@ -31,11 +31,11 @@ app.use(async (err, req, res, next) => {
   });
 });
 
-app.listen(8500, async (req, res, next) => {
+app.listen(process.env.PORT, async (req, res, next) => {
   try {
     await connection;
     console.log("Connected to the Database!");
-    console.log(`listening on port 8500`);
+    console.log(`listening on port ${process.env.PORT}`);
   } catch (error) {
     next(error);
   }
