@@ -1,1 +1,62 @@
 # BrewApps_assignment
+
+## Root Route
+
+- Route: `/`
+- Method: GET
+- Description: This is the root route and serves as a basic check to ensure that the server is running. It responds with the message "Brew_App_Assignment."
+
+## User Routes
+
+### Register User
+
+- Route: `/user/register`
+- Method: POST
+- Description: This route is used to register a new user. It expects the following parameters in the request body: `email`, `name`, and `password`. If any of these parameters are missing, it will return a "Missing required fields" error. If the user with the provided email already exists, it returns a "User already exists" error. If registration is successful, the user's password is securely hashed, and the user's data is saved in the database.
+
+### Login User
+
+- Route: `/user/login`
+- Method: POST
+- Description: This route is used to authenticate a user and issue a JSON Web Token (JWT) for further access. It expects the `email` and `password` parameters in the request body. If any of these parameters are missing, it returns a "Missing required fields" error. If the provided email does not match any existing user, it returns an "You have to register first" error. If the password is invalid, it returns an "Invalid password" error. Upon successful authentication, it generates a JWT and sends it in the response.
+
+## Books Routes
+
+### Get All Books
+
+- Route: `/books`
+- Method: GET
+- Description: This route fetches all the books available in the database and responds with an array of book objects, each containing `author`, `title`, and `summary` fields.
+
+### Add a New Book
+
+- Route: `/books`
+- Method: POST
+- Middleware: `authentication`
+- Description: Authenticated users can use this route to post a new book. It expects the following parameters in the request body: `author`, `title`, `summary`. The `userId` is automatically assigned based on the authenticated user. If the user is not authenticated, it returns an "Unauthorized" error. If the user is authenticated, the new book is added to the database, and the book details are returned.
+
+### Get a Book by ID
+
+- Route: `/books/:bookId`
+- Method: GET
+- Description: This route allows users to retrieve the details of a specific book by providing its ID as a parameter in the URL. It responds with the book's `title`, `author`, and `summary`.
+
+### Update Book Details
+
+- Route: `/books/:bookId`
+- Method: PATCH
+- Middleware: `authentication`
+- Description: This route is used to update the details of a book. Users need to be authenticated to access this route. It expects the book's ID in the URL parameter and the updated book details in the request body. If the user is the owner of the book, the book's details are updated and returned. Otherwise, it returns an "Unauthorized" error.
+
+### Delete a Book
+
+- Route: `/books/:bookId`
+- Method: DELETE
+- Middleware: `authentication`
+- Description: Authenticated users can use this route to delete a book by providing its ID as a parameter in the URL. If the user is the owner of the book, the book is deleted from the database, and a "Book deleted" message is sent as a response. If the user is not the owner, it returns an "Unauthorized" error.
+
+## Error Handling
+
+- Any route not matched by the defined routes will result in a "This route does not exist" error using the `createHttpError.NotFound` function.
+
+- General error handling middleware is in place to handle and respond to errors. It sets the HTTP status code based on the error, sends an error message in the response, and logs the error details.
