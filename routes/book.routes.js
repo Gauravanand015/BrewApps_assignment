@@ -56,7 +56,7 @@ bookRoutes.patch("/:bookId", authentication, async (req, res, next) => {
       "userId",
       "_id"
     );
-    if (loginUserId === data.userId._id.toString()) {
+    if (data && data.userId && loginUserId === data.userId._id.toString()) {
       const updateData = await BookModel.findByIdAndUpdate(
         { _id: bookId },
         { ...dataWantToUpdate }
@@ -83,7 +83,7 @@ bookRoutes.delete("/:bookId", authentication, async (req, res, next) => {
       "userId",
       "_id"
     );
-    if (loginUserId === data.userId._id.toString()) {
+    if (data && data.userId && loginUserId === data.userId._id.toString()) {
       const deleteBook = await BookModel.findByIdAndDelete({ _id: bookId });
       res.send("Book deleted");
     } else {
@@ -94,6 +94,7 @@ bookRoutes.delete("/:bookId", authentication, async (req, res, next) => {
       );
     }
   } catch (error) {
+    console.log("ddd");
     next(error);
   }
 });
