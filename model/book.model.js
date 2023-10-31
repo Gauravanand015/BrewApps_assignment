@@ -17,7 +17,7 @@ const bookSchema = mongoose.Schema(
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "UserModel" },
   },
   {
-    collections: "books",
+    collection: "books",
     timestamps: true,
   }
 );

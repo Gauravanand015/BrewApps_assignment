@@ -28,12 +28,22 @@ bookRoutes.post("/", authentication, async (req, res) => {
 });
 
 // get the books by the id using parameters
-bookRoutes.get("/:bookId", async (req, res) => {
+bookRoutes.get("/:bookId", async (req, res, next) => {
   const bookId = req.params.bookId;
-  const findBook = await BookModel.findById({ _id: bookId }).select(
-    "title author summary"
-  );
-  res.send(findBook);
+  try {
+    const findBook = await BookModel.findById({ _id: bookId }).select(
+      "title author summary"
+    );
+
+    if (findBook) {
+      res.send(findBook);
+    } else {
+      res.status(404).json({ error: "This book does not exist" });
+    }
+  } catch (error) {
+    // Handle other potential errors here
+    next(error);
+  }
 });
 
 // this route is used to update the books details
