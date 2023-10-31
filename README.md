@@ -1,5 +1,79 @@
 # BrewApps_assignment
 
+Deployment Link(By AWS Linux server) : http://43.204.237.46:8500/
+
+```markdown
+## Local Setup
+
+### Prerequisites
+
+Before you begin, ensure you have the following software and tools installed on your system:
+
+- **Node.js**: Download it from [nodejs.org](https://nodejs.org/).
+
+- **MongoDB**: Install MongoDB from [mongodb.com](https://www.mongodb.com/).
+
+### Step 1: Clone the Repository
+
+1. Open your terminal or command prompt.
+
+2. Change the current working directory to the location where you want to store the project.
+
+3. Run the following command to clone the repository:
+
+```bash
+git clone <repository-url>
+```
+
+Replace `<repository-url>` with the actual URL of your Git repository.
+
+### Step 2: Install Required Node.js Packages
+
+1. Navigate to the project directory:
+
+```bash
+cd <project-folder-name>
+```
+
+Replace `<project-folder-name>` with the name of the directory where you cloned the repository.
+
+2. Install the required Node.js packages:
+
+```bash
+npm install
+```
+
+### Step 3: Set Up Environment Variables
+
+1. Create a `.env` file in the project's root directory to store environment variables.
+
+2. Define the following environment variables in the `.env` file:
+
+```plaintext
+PORT=3000
+MONGO_URI=mongodb://localhost:27017/your-database-name
+```
+
+- **PORT**: Set your desired local server port.
+
+- **MONGO_URI**: Replace it with your local MongoDB URL.
+
+### Step 4: Start the Development Server
+
+1. Ensure your local MongoDB server is running.
+
+2. Start the development server:
+
+```bash
+npm start
+```
+
+### Step 5: Testing the API
+
+To test the API endpoints locally, you can use a tool like Postman or issue HTTP requests using `curl` from the command line. Detailed information about the available endpoints is provided in the API documentation.
+
+## API Documentation
+
 ## Root Route
 
 - Route: `/`
