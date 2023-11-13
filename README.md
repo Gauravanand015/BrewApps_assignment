@@ -1,6 +1,8 @@
 # BrewApps_assignment
 
-Deployment Link(By AWS Linux server) : http://43.204.237.46:8500/
+Deployment Link(By AWS Linux server)(disable right now) : http://43.204.237.46:8500/
+
+Deployment Link(On render) : https://brewapps-hp0q.onrender.com/
 
 ```markdown
 ## Local Setup
